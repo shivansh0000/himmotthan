@@ -105,3 +105,37 @@ html {
   opacity: 1;
 }
 
+.section-heading {
+  text-decoration: none;
+  color: #000;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.section-heading:hover,
+.section-heading:focus {
+  color: #007BFF;
+  text-decoration: underline;
+}
+
+.section-heading::after {
+  content: '';
+  display: inline-block;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.section-heading:hover::after {
+  content: '→';
+  transform: translateX(3px);
+}
+
+.section-title-hover {
+  transition: color 0.3s ease;
+}
+
+.section-title-hover:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
