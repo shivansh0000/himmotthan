@@ -87,3 +87,21 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* our work menu getting closed fixed */
+/* Start with dropdown hidden */
+.nav-item.dropdown .dropdown-menu {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  margin-top: 0;
+}
+
+/* Show it when .show is applied (via JS) */
+.nav-item.dropdown:hover .dropdown-menu,
+.nav-item.dropdown .dropdown-menu.show {
+  visibility: visible;
+  opacity: 1;
+}
+
