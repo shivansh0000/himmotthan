@@ -23,6 +23,51 @@
   top: 100%;
 }
 
+/* Enhanced mega menu styling */
+.navbar .mega-menu {
+  background: #f7fafc;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(60, 72, 88, 0.15);
+  padding: 2rem 1.5rem;
+  margin-top: 10px;
+  min-width: 900px;
+}
+
+.navbar .mega-menu .row {
+  gap: 0.5rem;
+}
+
+.navbar .mega-menu .col-md-4 {
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  min-width: 220px;
+}
+
+.navbar .mega-menu h6 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.navbar .mega-menu ul {
+  padding-left: 0;
+}
+
+.navbar .mega-menu .dropdown-item {
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  color: #333;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar .mega-menu .dropdown-item:hover {
+  background: #eaf6ea;
+  color: #1b5e20;
+  font-weight: 500;
+}
+
 /* Optional: Slight hover shadow */
 .navbar .mega-menu a.dropdown-item:hover {
   background-color: #f8f9fa;
