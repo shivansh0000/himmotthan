@@ -12,12 +12,10 @@
     <link href="css/style.css" rel="stylesheet" />
     <style>
         .section-title-hover {
+            color: #f2eaea;
+            /* Default black */
             transition: color 0.3s ease;
-        }
-
-        .section-title-hover:hover {
-            color: #00b33c;
-            text-decoration: underline;
+            text-decoration: none;
         }
 
         .section-title-hover .arrow {
@@ -25,11 +23,20 @@
             transition: transform 0.3s ease, color 0.3s ease;
             display: inline-block;
             margin-left: 6px;
+            color: #f9f4f4;
+            /* Arrow also black by default */
+        }
+
+        .section-title-hover:hover {
+            color: #198754;
+            /* Bootstrap green or your custom green */
+            text-decoration: underline;
         }
 
         .section-title-hover:hover .arrow {
             transform: translateX(4px);
-            color: #09b300;
+            color: #198754;
+            /* Arrow turns green too */
         }
     </style>
 </head>
@@ -40,14 +47,15 @@
 
     <main>
         <!-- Livestock Section -->
-        <section id="livestock" class="section bg-light py-5">
+        <section id="livestock" class="section py-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 d-flex align-items-start">
-                        <h2 class="text-primary fw-bold section-title-hover">
-                            Livestock <span class="arrow">&rsaquo;</span>
-                        </h2>
-
+                    <div class="col-md-3 d-flex align-items-center">
+                        <a href="livestock.html" class="text-decoration-none">
+                            <h2 class="section-title-hover fw-bold mb-0">
+                                Livestock <span class="arrow">&rsaquo;</span>
+                            </h2>
+                        </a>
                     </div>
                     <div class="col-md-9">
                         <div class="row g-4">
@@ -87,13 +95,16 @@
             </div>
         </section>
 
+
         <!-- Agriculture Section -->
-        <section id="agriculture" class="section bg-white py-5">
+        <section id="agriculture" class="section section-with-bg py-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 d-flex align-items-start">
+                    <div class="col-md-3 d-flex align-items-center">
                         <a href="agriculture.html" class="text-decoration-none">
-                            <h2 class="text-primary fw-bold section-title-hover">Agriculture</h2>
+                            <h2 class="section-title-hover fw-bold mb-0">
+                                Agriculture <span class="arrow">&rsaquo;</span>
+                            </h2>
                         </a>
                     </div>
                     <div class="col-md-9">
@@ -101,9 +112,9 @@
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
-                                        <h5 class="card-title">High Yielding Crops</h5>
-                                        <p class="card-text">Brief about high yielding crops...</p>
-                                        <a href="high-yielding-crops.html" class="btn btn-sm btn-outline-primary">Read
+                                        <h5 class="card-title">Fodder Plantation</h5>
+                                        <p class="card-text">Brief about fodder plantation...</p>
+                                        <a href="fodder-plantation.html" class="btn btn-sm btn-outline-primary">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -111,9 +122,9 @@
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
-                                        <h5 class="card-title">Seed Production</h5>
-                                        <p class="card-text">Brief about seed production...</p>
-                                        <a href="seed-production.html" class="btn btn-sm btn-outline-primary">Read
+                                        <h5 class="card-title">Breed Improvement</h5>
+                                        <p class="card-text">Brief about breed improvement...</p>
+                                        <a href="breed-improvement.html" class="btn btn-sm btn-outline-primary">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -121,9 +132,9 @@
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
-                                        <h5 class="card-title">Support Irrigation</h5>
-                                        <p class="card-text">Brief about support irrigation...</p>
-                                        <a href="support-irrigation.html" class="btn btn-sm btn-outline-primary">Read
+                                        <h5 class="card-title">Support Structure</h5>
+                                        <p class="card-text">Brief about support structure...</p>
+                                        <a href="support-structure.html" class="btn btn-sm btn-outline-primary">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -140,7 +151,9 @@
                 <div class="row">
                     <div class="col-md-3 d-flex align-items-start">
                         <a href="wash.html" class="text-decoration-none">
-                            <h2 class="text-primary fw-bold section-title-hover">WaSH</h2>
+                            <h2 class="fw-bold section-title-hover">
+                                WaSH <span class="arrow">&rsaquo;</span>
+                            </h2>
                         </a>
                     </div>
                     <div class="col-md-9">

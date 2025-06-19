@@ -180,7 +180,62 @@ html {
 }
 
 .section-title-hover:hover {
-  color: #0056b3;
+  color: #3fb300;
   text-decoration: underline;
 }
+/* Section with background image */
+.section-with-bg {
+  position: relative;
+  background: url('../assets/livestock-bg.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
+}
 
+.section-with-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black overlay, 50% opacity */
+  z-index: 1;
+}
+
+.section-with-bg .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* pic for our work livestock section*/
+#livestock {
+  background: url('/assets/livestock.JPG') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  color: white;
+}
+
+#livestock::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* dark overlay */
+  z-index: 1;
+}
+
+#livestock .container {
+  position: relative;
+  z-index: 2;
+}
+
+.livestock-heading {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-height: 200px;
+}
+
+/* pic for our work agriculture section*/
+#agriculture {
+  background: url('/assets/agriculture.JPG') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  color: white;
+}
