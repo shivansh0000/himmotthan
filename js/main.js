@@ -73,3 +73,12 @@ window.addEventListener('DOMContentLoaded', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 });
+//for wrapping text card section
+
+  function toggleInfo() {
+    const cards = document.getElementById('cardsWrapper');
+    const info = document.getElementById('infoText');
+
+    cards.classList.toggle('hidden');
+    info.classList.toggle('show');
+  }

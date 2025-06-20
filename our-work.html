@@ -28,7 +28,7 @@
         }
 
         .section-title-hover:hover {
-            color: #198754;
+            color: #53e553;
             /* Bootstrap green or your custom green */
             text-decoration: underline;
         }
@@ -37,6 +37,26 @@
             transform: translateX(4px);
             color: #198754;
             /* Arrow turns green too */
+        }
+
+        body {
+            background: linear-gradient(135deg, #c8ecf1, #b2ebf2, #4dd0e1, #26c6da, #00acc1);
+            background-size: 400% 400%;
+            animation: waveGradient 20s ease-in-out infinite;
+        }
+
+        @keyframes waveGradient {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
         }
     </style>
 </head>
@@ -47,18 +67,23 @@
 
     <main>
         <!-- Livestock Section -->
-        <section id="livestock" class="section py-5">
+        <section class="section-with-bg" style="background-image: url('assets/livestock.jpg');">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 d-flex align-items-center">
-                        <a href="livestock.html" class="text-decoration-none">
-                            <h2 class="section-title-hover fw-bold mb-0">
+                    <!-- LEFT COLUMN: Heading -->
+                    <div class="col-md-3 d-flex flex-column align-items-start justify-content-center">
+                        <a href="javascript:void(0)" class="text-decoration-none section-title-hover"
+                            onclick="toggleInfo()">
+                            <h2 class="fw-bold mb-0">
                                 Livestock <span class="arrow">&rsaquo;</span>
                             </h2>
                         </a>
                     </div>
+
+                    <!-- RIGHT COLUMN: Cards and Info Paragraph -->
                     <div class="col-md-9">
-                        <div class="row g-4">
+                        <!-- Cards -->
+                        <div id="cardsWrapper" class="row g-4 cards-wrapper">
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
@@ -90,6 +115,24 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Paragraph (hidden initially) -->
+                        <div id="infoText" class="info-text mt-4">
+                            <p>Livestock has traditionally been an integral part of hill farming system in Uttarakhand,
+                                and forms an integral part of the rural economy contributing to household income and
+                                family nutrition, besides producing much needed biomass and draught power for
+                                agricultural operations. Livestock supports agricultural activities and also provides an
+                                additional source of income for rural households. For a significant number of these
+                                households, especially marginal farmers, livestock is the primary source of income.
+                                However, the productivity of milch animals in central and western Himalayan region is
+                                low, as the availability of good quality green fodder, especially for milch animals in
+                                hilly areas, is a major constraint in augmenting milk production. Apart from the fodder
+                                scarcity non-descript animals, traditional feeding practices, non-availability of
+                                fundamental infrastructure for animal health, cattle feed, marketing of milk and dairy
+                                products makes the animal husbandry practices non- profitable, and causes human, mainly
+                                male migration and heavy workloads for their counterparts.</p>
+                            <span class="collapse-arrow" onclick="toggleInfo()">&larr; Back</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,12 +140,12 @@
 
 
         <!-- Agriculture Section -->
-        <section id="agriculture" class="section section-with-bg py-5">
+        <section class="section-with-bg" style="background-image: url('assets/agriculture.jpg');">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 d-flex align-items-center">
-                        <a href="agriculture.html" class="text-decoration-none">
-                            <h2 class="section-title-hover fw-bold mb-0">
+                        <a href="agriculture.html" class="text-decoration-none section-title-hover">
+                            <h2 class="fw-bold mb-0">
                                 Agriculture <span class="arrow">&rsaquo;</span>
                             </h2>
                         </a>
@@ -112,9 +155,9 @@
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
-                                        <h5 class="card-title">Fodder Plantation</h5>
-                                        <p class="card-text">Brief about fodder plantation...</p>
-                                        <a href="fodder-plantation.html" class="btn btn-sm btn-outline-primary">Read
+                                        <h5 class="card-title">High Yielding Crops</h5>
+                                        <p class="card-text">Brief about high yielding crops...</p>
+                                        <a href="high-yielding-crops.html" class="btn btn-sm btn-outline-primary">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -122,9 +165,9 @@
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
-                                        <h5 class="card-title">Breed Improvement</h5>
-                                        <p class="card-text">Brief about breed improvement...</p>
-                                        <a href="breed-improvement.html" class="btn btn-sm btn-outline-primary">Read
+                                        <h5 class="card-title">Seed Production</h5>
+                                        <p class="card-text">Brief about seed production...</p>
+                                        <a href="seed-production.html" class="btn btn-sm btn-outline-primary">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -132,9 +175,19 @@
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
-                                        <h5 class="card-title">Support Structure</h5>
-                                        <p class="card-text">Brief about support structure...</p>
-                                        <a href="support-structure.html" class="btn btn-sm btn-outline-primary">Read
+                                        <h5 class="card-title">Support Irrigation</h5>
+                                        <p class="card-text">Brief about support irrigation...</p>
+                                        <a href="support-irrigation.html" class="btn btn-sm btn-outline-primary">Read
+                                            More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Farm Mechanization</h5>
+                                        <p class="card-text">Brief about farm mechanization...</p>
+                                        <a href="farm-mechanization.html" class="btn btn-sm btn-outline-primary">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -146,12 +199,12 @@
         </section>
 
         <!-- WaSH Section -->
-        <section id="wash" class="section bg-light py-5">
+        <section class="section-with-bg" style="background-image: url('assets/wash.jpg');">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 d-flex align-items-start">
-                        <a href="wash.html" class="text-decoration-none">
-                            <h2 class="fw-bold section-title-hover">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <a href="wash.html" class="text-decoration-none section-title-hover">
+                            <h2 class="fw-bold mb-0">
                                 WaSH <span class="arrow">&rsaquo;</span>
                             </h2>
                         </a>
@@ -171,9 +224,19 @@
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
-                                        <h5 class="card-title">WaSH in School</h5>
-                                        <p class="card-text">Brief about WaSH in School...</p>
-                                        <a href="wash-school.html" class="btn btn-sm btn-outline-primary">Read More</a>
+                                        <h5 class="card-title">WaSH in Schools</h5>
+                                        <p class="card-text">Brief about WaSH in schools...</p>
+                                        <a href="wash-schools.html" class="btn btn-sm btn-outline-primary">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Water Security</h5>
+                                        <p class="card-text">Brief about water security...</p>
+                                        <a href="water-security.html" class="btn btn-sm btn-outline-primary">Read
+                                            More</a>
                                     </div>
                                 </div>
                             </div>
@@ -183,6 +246,7 @@
             </div>
         </section>
     </main>
+
 
     <!-- Footer Include -->
     <div data-include="partials/footer.html"></div>
