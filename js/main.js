@@ -73,12 +73,14 @@ window.addEventListener('DOMContentLoaded', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 });
+
 //for wrapping text card section
+function toggleInfo(sectionName) {
+  const cards = document.getElementById(sectionName + 'Cards');
+  const info = document.getElementById(sectionName + 'Info');
 
-  function toggleInfo() {
-    const cards = document.getElementById('cardsWrapper');
-    const info = document.getElementById('infoText');
+  // Toggle visibility classes
+  cards.classList.toggle('hidden');
+  info.classList.toggle('show');
+}
 
-    cards.classList.toggle('hidden');
-    info.classList.toggle('show');
-  }

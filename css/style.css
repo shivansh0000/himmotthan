@@ -620,16 +620,7 @@ footer {
   z-index: 2;
   padding: 3rem 1rem;
 }
-.cards-wrapper {
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-.cards-wrapper.hidden {
-  transform: translateX(100%);
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  position: absolute;
-}
+
 .info-text {
   display: none;
   color: white;
