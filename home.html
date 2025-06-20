@@ -4,75 +4,1063 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home | My Organization</title>
+    <title>Home | Himmotthan</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Your Custom CSS -->
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 500px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-arrow:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-arrow {
+            left: 20px;
+        }
+
+        .next-arrow {
+            right: 20px;
+        }
+
+        /* Dots indicator */
+        .dots-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .slider-container {
+                height: 50vh;
+                min-height: 300px;
+            }
+
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .prev-arrow {
+                left: 10px;
+            }
+
+            .next-arrow {
+                right: 10px;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Projects Section Styles */
+        .projects-section {
+            background: #001f4d;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projects-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #001f4d 0%, #003366 100%);
+            z-index: 1;
+        }
+
+        .projects-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .projects-title {
+            color: #fff;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #e0f7fa 0%, #c8e6c9 100%);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(178, 223, 219, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            height: auto;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        .project-card-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-image {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            margin: 0 auto 20px auto;
+            display: block;
+            border-radius: 50%;
+            box-shadow: 0 4px 16px rgba(56, 142, 60, 0.2);
+            border: 3px solid #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-title {
+            color: #388e3c;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .project-description {
+            color: #2d4739;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(56, 142, 60, 0.3);
+            align-self: center;
+        }
+
+        .cta-btn:hover {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(56, 142, 60, 0.4);
+        }
+
+        .cta-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-content {
+            background: #fff;
+            margin: 5% auto;
+            padding: 40px 35px;
+            border-radius: 16px;
+            max-width: 700px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal h2 {
+            color: #388e3c;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0f7fa;
+        }
+
+        .modal p {
+            color: #2d4739;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .close {
+            color: #388e3c;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(56, 142, 60, 0.1);
+        }
+
+        .close:hover {
+            background: rgba(56, 142, 60, 0.2);
+            transform: rotate(90deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .projects-section {
+                padding: 60px 0;
+            }
+
+            .projects-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-card {
+                min-height: 350px;
+                padding: 25px 20px;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+            }
+
+            .project-description {
+                font-size: 0.95rem;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                padding: 30px 20px;
+                width: 95%;
+            }
+
+            .modal h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-container {
+                padding: 0 15px;
+            }
+
+            .project-card {
+                min-height: 320px;
+            }
+
+            .project-image {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <!-- Reusable Header -->
+     <div class="slider-container">
+        <div class="slider-wrapper">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="images/slide3.png">
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="images/slide2.png">
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="images/slide1.png">
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="slide">
+                <img src="images/slide4.png">
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="nav-arrow prev-arrow" onclick="previousSlide()">‹</button>
+        <button class="nav-arrow next-arrow" onclick="nextSlide()">›</button>
+
+        <!-- Dots Indicator -->
+        <div class="dots-container">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 1;
+        const slides = document.getElementsByClassName('slide');
+        const dots = document.getElementsByClassName('dot');
+        let slideInterval;
+
+        function showSlide(n) {
+            if (n > slides.length) { currentSlideIndex = 1; }
+            if (n < 1) { currentSlideIndex = slides.length; }
+            
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            
+            // Remove active class from all dots
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+            
+            // Show current slide and activate corresponding dot
+            slides[currentSlideIndex - 1].classList.add('active');
+            dots[currentSlideIndex - 1].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlideIndex++;
+            showSlide(currentSlideIndex);
+            resetAutoSlide();
+        }
+
+        function previousSlide() {
+            currentSlideIndex--;
+            showSlide(currentSlideIndex);
+            resetAutoSlide();
+        }
+
+        function currentSlide(n) {
+            currentSlideIndex = n;
+            showSlide(currentSlideIndex);
+            resetAutoSlide();
+        }
+
+        function autoSlide() {
+            currentSlideIndex++;
+            showSlide(currentSlideIndex);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(autoSlide, 5000);
+        }
+
+        // Initialize auto-slide
+        slideInterval = setInterval(autoSlide, 5000);
+
+        // Pause auto-slide on hover
+        const sliderContainer = document.querySelector('.slider-container');
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+
+        sliderContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(autoSlide, 8000);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        sliderContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        sliderContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide(); // Swipe left - next slide
+                } else {
+                    previousSlide(); // Swipe right - previous slide
+                }
+            }
+        }
+    </script>
     <div data-include="partials/header.html"></div>
 
     <main>
-        <!-- About Section -->
-        <section id="about" class="section bg-white text-dark">
-            <div class="container">
-                <h2 class="section-title">About Us</h2>
-                <p class="about-text">
-                    In 2001, Tata Trusts initiated Himmothan Pariyojana (HMP)...
-                </p>
-            </div>
+
+        <section class="section container" id="overview" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 48px;">
+            <h2 style="text-align: center; color: #388e3c; margin-bottom: 18px;">Overview</h2>
+            <p style="max-width: 800px; text-align: center; font-size: 1.15em; color: #2d4739;">
+                Himmotthan Society is dedicated to empowering mountain communities in Uttarakhand and neighboring regions through sustainable development initiatives. By focusing on natural resource management, livelihood enhancement, education, water and sanitation, and disaster rehabilitation, Himmotthan works collaboratively with partners, government agencies, and local institutions to create resilient, self-sustained communities that thrive in harmony with their environment.
+            </p>
         </section>
-        <section id="ourvision" class="section custom-bg-green text-black">
-            <div class="container">
-                <h3 class="section-title">Our Vision</h3>
-                <p class="about-text">
-                    Together with the partner organizations...
-                </p>
+        <section class="section" id="vision">
+            <div style="display: flex; align-items: flex-start; gap: 36px; flex-wrap: wrap;">
+                <img src="images/vision.jpg" alt="Vision"
+                    style="width: 340px; max-width: 98vw; border-radius: 14px; box-shadow: 0 2px 14px rgba(56,142,60,0.13); background: #fff; object-fit: cover;">
+                <div style="flex: 1; min-width: 240px;">
+                    <h2>Vision</h2>
+                    <div class="vision-content">
+                        <p>
+                            Together with the partner organizations, Himmotthan is dedicated to the vision of building
+                            prosperous and self sustained mountain communities which live in harmony and sympathy with their
+                            natural surroundings.
+                        </p>
+                    </div>
+                </div>
             </div>
+            <style>
+                .vision-content {
+                    opacity: 0;
+                    transform: translateX(60px);
+                    transition: opacity 0.7s cubic-bezier(.4, 0, .2, 1), transform 0.7s cubic-bezier(.4, 0, .2, 1);
+                }
+
+                #vision img {
+                    opacity: 0;
+                    transform: translateX(-60px);
+                    transition: opacity 0.7s cubic-bezier(.4, 0, .2, 1), transform 0.7s cubic-bezier(.4, 0, .2, 1);
+                }
+
+                #vision.scrolled .vision-content {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+
+                #vision.scrolled img {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    function handleVisionScroll() {
+                        var vision = document.getElementById('vision');
+                        var rect = vision.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 100) {
+                            vision.classList.add('scrolled');
+                            window.removeEventListener('scroll', handleVisionScroll);
+                        }
+                    }
+                    window.addEventListener('scroll', handleVisionScroll);
+                    handleVisionScroll();
+                });
+            </script>
         </section>
 
-        <!-- Project Section -->
-        <section id="projects" class="section custom-bg-white">
-            <div class="container text-center">
-                <h2 class="section-title">Our Projects</h2>
-                <div class="carousel-wrapper">
-                    <button class="carousel-btn left" onclick="scrollProjects('left')">&#10094;</button>
-                    <div class="project-carousel">
-                        <!-- Project items here -->
+        <!-- Projects Section -->
+        <section class="projects-section" id="projects">
+        <div class="projects-container">
+            <h2 class="projects-title">Our Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <img src="images/livestock_initiative.jpg" alt="Livestock Initiative" class="project-image">
+                        <h3 class="project-title">Livestock Initiative</h3>
+                        <p class="project-description">
+                            Livestock has traditionally been an integral part of hill farming system in Uttarakhand, and forms an integral part of the rural economy
+                        </p>
+                        <button class="cta-btn" onclick="openModal('modal1')">Learn More</button>
                     </div>
-                    <button class="carousel-btn right" onclick="scrollProjects('right')">&#10095;</button>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <img src="images/agriculture.jpg" alt="Agriculture" class="project-image">
+                        <h3 class="project-title">Agriculture Initiative</h3>
+                        <p class="project-description">
+                            The mountains of Uttarakhand which constitute 86% of the total area of the State, host a variety of crops due to their varied agro-climatic conditions
+                        </p>
+                        <button class="cta-btn" onclick="openModal('modal2')">Learn More</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <img src="images/water.jpg" alt="Water and Sanitation Initiative" class="project-image">
+                        <h3 class="project-title">Water and Sanitation Initiative</h3>
+                        <p class="project-description">
+                            Improving community health through Drinking Water Supply and Sanitation is one of the flagship initiative under HMP. It aims to improve community wellness
+                        </p>
+                        <button class="cta-btn" onclick="openModal('modal3')">Learn More</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <img src="images/education.jpg" alt="Education Institution" class="project-image">
+                        <h3 class="project-title">Education Institution</h3>
+                        <p class="project-description">
+                            This Initiative is being implemented in over 82 villages of 4 mountain districts of Uttarakhand from July 2015 with the aim to enhance educational outcomes
+                        </p>
+                        <button class="cta-btn" onclick="openModal('modal4')">Learn More</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <img src="images/institution.jpg" alt="Institution and Enterprise" class="project-image">
+                        <h3 class="project-title">Institution and Enterprise</h3>
+                        <p class="project-description">
+                            The Microfinance initiative, namely the Integration of Microfinance (IMF) is designed to reach 100,000 households by 2020 with sustainable development
+                        </p>
+                        <button class="cta-btn" onclick="openModal('modal5')">Read More</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <img src="images/disaster.jpg" alt="Post Disaster Rehabilitation" class="project-image">
+                        <h3 class="project-title">Post Disaster Rehabilitation</h3>
+                        <p class="project-description">
+                            The Himalayas have always been vulnerable to the vagaries of many natural disasters like earthquakes due to plate tectonic movements
+                        </p>
+                        <button class="cta-btn" onclick="openModal('modal6')">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2>Livestock Initiative</h2>
+            <p>
+                Livestock has traditionally been an integral component of the hill farming system in Uttarakhand,
+                contributing significantly to the rural economy through household income, family nutrition, biomass
+                production, and draught power for agricultural activities. For many rural households, especially
+                marginal farmers, livestock serves as the primary source of income. However, the productivity of
+                milch animals in the central and western Himalayan regions remains low due to limited availability
+                of high-quality green fodder.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h2>Agriculture Initiative</h2>
+            <p>
+                Given the distinct ecosystem of the hill regions, agricultural development in the hill districts of
+                Uttarakhand requires a tailored approach. Farmers here primarily engage in subsistence agriculture,
+                hindered by small and scattered landholdings, difficult terrain, lack of irrigation, limited access
+                to improved inputs and technology, and poor credit and marketing facilities.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h2>Water and Sanitation Initiative</h2>
+            <p>
+                'Improving Community Health through Drinking Water Supply and Sanitation' is a flagship initiative
+                under the Himmotthan Mountain Program (HMP), aimed at enhancing community health by implementing
+                village-level drinking water and environmental sanitation projects with a strong emphasis on
+                hygiene.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <h2>Education Institution</h2>
+            <p>
+                Himmotthan has developed a deep understanding of the educational challenges and community needs
+                across the Central and Western Himalayan regions. At the core of its strategy is the goal of
+                ensuring quality education for all children, particularly those from marginalized backgrounds.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal5')">&times;</span>
+            <h2>Institution and Enterprise</h2>
+            <p>
+                The livelihoods of rural communities in Uttarakhand's Central Himalayan region are primarily
+                subsistence-based, relying on agriculture, livestock, and forest resources. However, challenges
+                such as small and fragmented landholdings, traditional farming practices, degradation of natural
+                resources have led to persistent rural poverty.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal6')">&times;</span>
+            <h2>Post Disaster Rehabilitation</h2>
+            <p>
+                The Himalayas have always been vulnerable to the vagaries of many natural disasters like
+                earthquakes due to plate tectonic movements, cloudbursts, flash floods, avalanches and
+                landslides. All these natural disasters result in bringing the government and various
+                organizations to put in their efforts in coordination for immediate relief.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+    </script>
+
+        <!-- Insights Section -->
+        <section class="insights-section container" id="insights" style="background: none; box-shadow: none;">
+            <div class="section-bg-img">
+                <div class="section-inner">
+                    <h2 style="text-align: center;">Insights</h2>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-bg"></div>
+                            <div class="insight-content">
+                                <div class="insight-title">States</div>
+                                <div class="insight-value">2</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-bg"></div>
+                            <div class="insight-content">
+                                <div class="insight-title">Union Territory</div>
+                                <div class="insight-value">1</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-bg"></div>
+                            <div class="insight-content">
+                                <div class="insight-title">Districts</div>
+                                <div class="insight-value">15</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-bg"></div>
+                            <div class="insight-content">
+                                <div class="insight-title">Blocks</div>
+                                <div class="insight-value" data-target="49" data-plus="true">0+</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-bg"></div>
+                            <div class="insight-content">
+                                <div class="insight-title">Project Clusters</div>
+                                <div class="insight-value" data-target="50" data-plus="true">0+</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-bg"></div>
+                            <div class="insight-content">
+                                <div class="insight-title">Women Co-operatives</div>
+                                <div class="insight-value" data-target="50" data-plus="true">0+</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-bg"></div>
+                            <div class="insight-content">
+                                <div class="insight-title">Villages</div>
+                                <div class="insight-value" data-target="2070" data-plus="true">0+</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-bg"></div>
+                            <div class="insight-content">
+                                <div class="insight-title">Households</div>
+                                <div class="insight-value" data-target="124000"data-plus="true">0+</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-bg"></div>
+                            <div class="insight-content">
+                                <div class="insight-title">Grade Appropriate Learning</div>
+                                <div class="insight-value" data-target="10000" data-plus="true">0+</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Team Section -->
-        <section id="team" class="section custom-bg-green">
-            <div class="container">
-                <h2>Team</h2>
-                <p>Team Section</p>
+        <!-- Governing Board Section -->
+        <section class="team-section container" id="board">
+            <h3>Governing Board</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/Rajesh-Thadani.jpg" alt="Rajesh-Thadani">
+                    <div class="team-name">Rajesh Thadani</div>
+                    <div class="team-role">Chair Person</div>
+                    <div class="department">
+                        <div>Expert, Natural Resource Management</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/AmritaPatwardhan.jpg" alt="AmritaPatwardhan">
+                    <div class="team-name">Amrita Patwardhan</div>
+                    <div class="team-role">Treasurer</div>
+                    <div class="department">
+                        <div>Head Education, Tata Trusts</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/Ashis-Despandey.jpg" alt="Ashis-Despandey">
+                    <div class="team-name">Ashish Despandey</div>
+                    <div class="team-role">Member(Ex-Officio Tata Trusts nominee)</div>
+                    <div class="department">
+                        <div>CFO and Company Secretary, Tata Trusts, Mumbai</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/dwaghela.jpg" alt="Divyang Waghela">
+                    <div class="team-name">Divyang Waghela</div>
+                    <div class="team-role">Member(Ex-Officio Tata Trusts nominee)</div>
+                    <div class="department">
+                        <div>Head, Tata Water Mission</div>
+                    </div>
+                </div>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/Deepak-sanan.jpg" alt="Deepak Sanan">
+                    <div class="team-name">Deepak Sanan</div>
+                    <div class="team-role">Member of the Board</div>
+                    <div class="department">
+                        <div>Ex. Add. Chief Secretary, Govt. of Himachal Pradesh</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/STS-Lepcha.jpg" alt="STS-Lepcha">
+                    <div class="team-name">Mr.STS-Lepcha</div>
+                    <div class="team-role">Member of the Board</div>
+                    <div class="department">
+                        <div>IFS (Retd.), Ex-PCCF, Govt. of Uttarakhand</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/vk.jpg" alt="Vinod Kothari">
+                    <div class="team-name">Vinod Kothari</div>
+                    <div class="team-role">Executive Director, Himmotthan Society</div>
+                    <div class="department">
+                        <div>Member Secretary(Ex-officio, Tata Trusts Nominee)</div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="section custom-bg-white">
-            <div class="container">
-                <h2>Contact</h2>
-                <p>Contact Section</p>
+        <section class="partners-section" id="partners">
+        <div class="partners-container">
+            <h3>Our Partners</h3>
+            <div class="partners-grid">
+                <div class="partner-card"><img src="images/HDFC.jpeg" alt="HDFC Bank Parivartan"></div>
+                <div class="partner-card"><img src="images/CII.png" alt="CII"></div>
+                <div class="partner-card"><img src="images/CINI.jpeg" alt="CINI"></div>
+                <div class="partner-card"><img src="images/ABF1.png" alt="Axis Bank Foundation"></div>
+                <div class="partner-card"><img src="images/ARG.png" alt="Arghyam"></div>
+                <div class="partner-card"><img src="images/TCP.jpeg" alt="Tata Consumer Products"></div>
+                <div class="partner-card"><img src="images/UF.jpeg" alt="Uday Foundation"></div>
+                <div class="partner-card"><img src="images/titan.jpg" alt="Titan"></div>
+                <div class="partner-card"><img src="images/THF.png" alt="The Hans Foundation"></div>
+                <div class="partner-card"><img src="images/htparekh.jpg" alt="H T Parekh Foundation"></div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Career Section -->
-        <section id="career" class="section custom-bg-green">
-            <div class="container">
-                <h2>Career</h2>
-                <p>Career Section</p>
+    <!-- Government Collaboration Section -->
+    <section class="collaborators" id="collaborators">
+        <div class="collaborators-container">
+            <h4>Government Collaborators</h4>
+            <div class="collaborators-grid">
+                <div class="partner-card">
+                    <img src="images/JICA.png" alt="JICA">
+                </div>
+                <div class="partner-card">
+                    <img src="images/NRLM.png" alt="NRLM">
+                </div>
+                <div class="partner-card">
+                    <img src="images/TBA.jpeg" alt="Ministry of Tribal Affairs">
+                </div>
+                <div class="partner-card">
+                    <img src="images/NST.png" alt="National Sample Survey Office">
+                </div>
+                <div class="partner-card">
+                    <img src="images/NABARD.png" alt="NABARD">
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
+        <!-- Modal Styles (from hom.html) -->
+        <style>
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background: rgba(0, 0, 0, 0.45);
+                transition: opacity 0.2s;
+            }
+
+            .modal-content {
+                background: #fff;
+                margin: 60px auto;
+                padding: 30px 24px 24px 24px;
+                border-radius: 12px;
+                max-width: 600px;
+                box-shadow: 0 8px 32px rgba(56, 142, 60, 0.18);
+                position: relative;
+                animation: modalIn 0.2s;
+            }
+
+            @keyframes modalIn {
+                from {
+                    transform: translateY(-40px);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            .close {
+                color: #388e3c;
+                position: absolute;
+                top: 18px;
+                right: 22px;
+                font-size: 2em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: color 0.2s;
+            }
+
+            .close:hover {
+                color: #04072e;
+            }
+
+            @media (max-width: 600px) {
+                .modal-content {
+                    width: 92vw;
+                    padding: 18px 8px 18px 8px;
+                }
+            }
+        </style>
     </main>
 
     <!-- Reusable Footer -->
@@ -84,38 +1072,55 @@
     <!-- Include Loader -->
     <script src="js/include.js"></script>
 
-    <!-- Your Page-Specific JS -->
-    <script src="js/main.js"></script>
-    <script>
-        function scrollProjects(direction) {
-            const carousel = document.querySelector('.project-carousel');
-            const scrollAmount = carousel.clientWidth;
-            carousel.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
-        }
+    <!-- Modal and Dropdown Scripts -->
+    <script src="js/dropdown.js"></script>
+    <script src="js/modal.js"></script>
 
-        function openPopup(id) {
+    <!-- Insights Animation Script -->
+    <script>
+        // Animate insight numbers when in view
+        document.addEventListener('DOMContentLoaded', function () {
+            function animateValue(el, start, end, duration, hasPlus) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    el.textContent = Math.floor(progress * (end - start) + start) + (hasPlus ? '+' : '');
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        el.textContent = end + (hasPlus ? '+' : '');
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            let animated = false;
+            function handleInsightsScroll() {
+                const section = document.getElementById('insights');
+                if (!section) return;
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100 && !animated) {
+                    animated = true;
+                    document.querySelectorAll('.insight-value[data-target]').forEach(el => {
+                        const end = parseInt(el.getAttribute('data-target'), 10);
+                        const hasPlus = el.hasAttribute('data-plus');
+                        animateValue(el, 0, end, 1200, hasPlus);
+                    });
+                    window.removeEventListener('scroll', handleInsightsScroll);
+                }
+            }
+            window.addEventListener('scroll', handleInsightsScroll);
+            handleInsightsScroll();
+        });
+
+        // Modal open/close functions
+        function openModal(id) {
             document.getElementById(id).style.display = 'flex';
         }
-
-        function closePopup(event, id) {
-            if (event.target.classList.contains('popup-overlay') || event.target.classList.contains('close-btn')) {
-                document.getElementById(id).style.display = 'none';
-            }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
         }
-
-        function checkAndOpen(event, id) {
-            if (!window.getSelection().toString()) {
-                openPopup(id);
-            }
-        }
-
-        // Prevent staying on section after reload
-        window.addEventListener('DOMContentLoaded', function () {
-            if (window.location.hash) {
-                history.replaceState(null, null, window.location.pathname);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        });
     </script>
 </body>
 
