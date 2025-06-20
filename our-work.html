@@ -13,9 +13,9 @@
     <style>
         .section-title-hover {
             color: #f2eaea;
-            /* Default black */
-            transition: color 0.3s ease;
             text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
         }
 
         .section-title-hover .arrow {
@@ -24,39 +24,150 @@
             display: inline-block;
             margin-left: 6px;
             color: #f9f4f4;
-            /* Arrow also black by default */
         }
 
         .section-title-hover:hover {
-            color: #53e553;
-            /* Bootstrap green or your custom green */
+            color: #45c189 !important;
             text-decoration: underline;
+            transform: scale(1.05);
         }
 
         .section-title-hover:hover .arrow {
             transform: translateX(4px);
-            color: #198754;
-            /* Arrow turns green too */
+            color: #45c189 !important;
         }
 
+
         body {
-            background: linear-gradient(135deg, #c8ecf1, #b2ebf2, #4dd0e1, #26c6da, #00acc1);
+            background: linear-gradient(135deg,
+                    #d4f4e0,
+                    /* soft mint */
+                    #bcefd0,
+                    /* light pastel green */
+                    #9be6b8,
+                    /* gentle green */
+                    #7ddca3,
+                    /* muted medium green */
+                    #7ddca3
+                    /* repeated for smooth loop */
+                );
             background-size: 400% 400%;
             animation: waveGradient 20s ease-in-out infinite;
         }
 
         @keyframes waveGradient {
             0% {
-                background-position: 0% 0%;
+                background-position: 0% 50%;
             }
 
             50% {
-                background-position: 100% 100%;
+                background-position: 100% 50%;
             }
 
             100% {
-                background-position: 0% 0%;
+                background-position: 0% 50%;
             }
+        }
+
+
+        /*Style for right/left alignment and spacing:*/
+        .read-more-link {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .read-more-link:hover {
+            text-decoration: underline;
+            color: #45c189 !important;
+            transform: scale(1.08);
+        }
+
+
+        /* for card read more link */
+        .cards-wrapper .card .btn {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            transition: transform 0.3s ease, color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .cards-wrapper .card .btn:hover {
+            text-decoration: underline;
+            transform: scale(1.08);
+            /* increases size */
+            color: #349268 !important;
+            /* or any color you want */
+            text-decoration: underline;
+        }
+
+        .collapse-arrow {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .info-text {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+            color: white;
+            padding-right: 1rem;
+        }
+
+        .info-text.show {
+            display: block;
+        }
+
+        .section-with-bg .col-md-9 {
+            min-height: 350px;
+            /* adjust based on your card content height */
+        }
+
+        /* Light green transparent card background with soft shadow */
+        .cards-wrapper .card {
+            background-color: rgba(209, 222, 209, 0.919);
+            /* Light green at 30% opacity */
+            box-shadow: 0 4px 12px rgba(28, 241, 4, 0.862);
+            /* Soft shadow */
+            border-radius: 12px;
+            /* Optional: rounded corners */
+            border: none;
+            /* Removes default card border */
+            transition: box-shadow 0.3s ease;
+        }
+
+        /* Lift effect on hover */
+        .cards-wrapper .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* card transition */
+
+        .cards-wrapper {
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .cards-wrapper.hidden {
+            transform: translateX(100%);
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+        }
+
+        .info-text {
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            display: none;
+            position: relative;
+        }
+
+        .info-text.show {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
         }
     </style>
 </head>
@@ -73,7 +184,7 @@
                     <!-- LEFT COLUMN: Heading -->
                     <div class="col-md-3 d-flex flex-column align-items-start justify-content-center">
                         <a href="javascript:void(0)" class="text-decoration-none section-title-hover"
-                            onclick="toggleInfo()">
+                            onclick="toggleInfo('livestock')">
                             <h2 class="fw-bold mb-0">
                                 Livestock <span class="arrow">&rsaquo;</span>
                             </h2>
@@ -83,14 +194,15 @@
                     <!-- RIGHT COLUMN: Cards and Info Paragraph -->
                     <div class="col-md-9">
                         <!-- Cards -->
-                        <div id="cardsWrapper" class="row g-4 cards-wrapper">
+                        <div id="livestockCards" class="row g-4 cards-wrapper">
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
                                         <h5 class="card-title">Fodder Plantation</h5>
                                         <p class="card-text">Brief about fodder plantation...</p>
-                                        <a href="fodder-plantation.html" class="btn btn-sm btn-outline-primary">Read
-                                            More</a>
+                                        <a href="OurWorkSubSection/livestock.html#fodder"
+                                            class="btn btn-sm text-dark cards-wrapper">Read
+                                            More&rarr;</a>
                                     </div>
                                 </div>
                             </div>
@@ -99,8 +211,9 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Breed Improvement</h5>
                                         <p class="card-text">Brief about breed improvement...</p>
-                                        <a href="breed-improvement.html" class="btn btn-sm btn-outline-primary">Read
-                                            More</a>
+                                        <a href="breed-improvement.html"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
                                     </div>
                                 </div>
                             </div>
@@ -109,30 +222,27 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Support Structure</h5>
                                         <p class="card-text">Brief about support structure...</p>
-                                        <a href="support-structure.html" class="btn btn-sm btn-outline-primary">Read
-                                            More</a>
+                                        <a href="support-structure.html"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Paragraph (hidden initially) -->
-                        <div id="infoText" class="info-text mt-4">
-                            <p>Livestock has traditionally been an integral part of hill farming system in Uttarakhand,
-                                and forms an integral part of the rural economy contributing to household income and
-                                family nutrition, besides producing much needed biomass and draught power for
-                                agricultural operations. Livestock supports agricultural activities and also provides an
-                                additional source of income for rural households. For a significant number of these
-                                households, especially marginal farmers, livestock is the primary source of income.
-                                However, the productivity of milch animals in central and western Himalayan region is
-                                low, as the availability of good quality green fodder, especially for milch animals in
-                                hilly areas, is a major constraint in augmenting milk production. Apart from the fodder
-                                scarcity non-descript animals, traditional feeding practices, non-availability of
-                                fundamental infrastructure for animal health, cattle feed, marketing of milk and dairy
-                                products makes the animal husbandry practices non- profitable, and causes human, mainly
-                                male migration and heavy workloads for their counterparts.</p>
-                            <span class="collapse-arrow" onclick="toggleInfo()">&larr; Back</span>
+                        <div id="livestockInfo" class="info-text mt-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="collapse-arrow read-more-link " onclick="toggleInfo('livestock') ">&larr;
+                                    Back</span>
+                                <a href="OurWorkSubSection/livestock.html" class="read-more-link">Read more &rarr;</a>
+                            </div>
+                            <p class="mb-0 mt-2">
+                                Livestock plays a vital role in the hill farming system of Uttarakhand, supporting rural
+                                livelihoods and ensuring food security...
+                            </p>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -143,22 +253,28 @@
         <section class="section-with-bg" style="background-image: url('assets/agriculture.jpg');">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 d-flex align-items-center">
-                        <a href="agriculture.html" class="text-decoration-none section-title-hover">
+                    <!-- LEFT COLUMN: Heading -->
+                    <div class="col-md-3 d-flex flex-column align-items-start justify-content-center">
+                        <a href="javascript:void(0)" class="text-decoration-none section-title-hover"
+                            onclick="toggleInfo('agriculture')">
                             <h2 class="fw-bold mb-0">
                                 Agriculture <span class="arrow">&rsaquo;</span>
                             </h2>
                         </a>
                     </div>
+
+                    <!-- RIGHT COLUMN: Cards and Info Paragraph -->
                     <div class="col-md-9">
-                        <div class="row g-4">
+                        <!-- Cards -->
+                        <div id="agricultureCards" class="row g-4 cards-wrapper">
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
                                         <h5 class="card-title">High Yielding Crops</h5>
                                         <p class="card-text">Brief about high yielding crops...</p>
-                                        <a href="high-yielding-crops.html" class="btn btn-sm btn-outline-primary">Read
-                                            More</a>
+                                        <a href="OurWorkSubSection/agriculture.html#high-yielding-crops"
+                                            class="btn btn-sm text-dark cards-wrapper">Read
+                                            More&rarr;</a>
                                     </div>
                                 </div>
                             </div>
@@ -167,18 +283,9 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Seed Production</h5>
                                         <p class="card-text">Brief about seed production...</p>
-                                        <a href="seed-production.html" class="btn btn-sm btn-outline-primary">Read
-                                            More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Support Irrigation</h5>
-                                        <p class="card-text">Brief about support irrigation...</p>
-                                        <a href="support-irrigation.html" class="btn btn-sm btn-outline-primary">Read
-                                            More</a>
+                                        <a href="OurWorkSubSection/agriculture.html#seed-production"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
                                     </div>
                                 </div>
                             </div>
@@ -187,46 +294,179 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Farm Mechanization</h5>
                                         <p class="card-text">Brief about farm mechanization...</p>
-                                        <a href="farm-mechanization.html" class="btn btn-sm btn-outline-primary">Read
-                                            More</a>
+                                        <a href="OurWorkSubSection/agriculture.html#farm-mechanization"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Support Irrigation</h5>
+                                        <p class="card-text">Brief about support irrigation...</p>
+                                        <a href="OurWorkSubSection/agriculture.html#support-irrigation"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Agriculture Marketing</h5>
+                                        <p class="card-text">Brief about agriculture marketing...</p>
+                                        <a href="OurWorkSubSection/agriculture.html#agriculture-marketing"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Action Research</h5>
+                                        <p class="card-text">Brief about action research...</p>
+                                        <a href="OurWorkSubSection/agriculture.html#action-research"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Capacity Building</h5>
+                                        <p class="card-text">Brief about capacity building...</p>
+                                        <a href="OurWorkSubSection/agriculture.html#capacity-building"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Support Irrigation</h5>
+                                        <p class="card-text">Brief about support irrigation...</p>
+                                        <a href="support-irrigation.html"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Paragraph (hidden initially) -->
+                        <div id="agricultureInfo" class="info-text mt-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="collapse-arrow read-more-link " onclick="toggleInfo('agriculture') ">&larr;
+                                    Back</span>
+                                <a href="OurWorkSubSection/agriculture.html" class="read-more-link">Read more &rarr;</a>
+                            </div>
+                            <p class="mb-0 mt-2">
+                                Agriculture plays a vital role in the hill farming system of Uttarakhand, supporting
+                                rural
+                                livelihoods and ensuring food security...
+                            </p>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- WaSH Section -->
-        <section class="section-with-bg" style="background-image: url('assets/wash.jpg');">
+        <section class="section-with-bg" style="background-image: url('assets/wash.JPG');">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 d-flex align-items-center">
-                        <a href="wash.html" class="text-decoration-none section-title-hover">
+                    <!-- LEFT COLUMN: Heading -->
+                    <div class="col-md-3 d-flex flex-column align-items-start justify-content-center">
+                        <a href="javascript:void(0)" class="text-decoration-none section-title-hover"
+                            onclick="toggleInfo('wash')">
                             <h2 class="fw-bold mb-0">
                                 WaSH <span class="arrow">&rsaquo;</span>
                             </h2>
                         </a>
                     </div>
+
+                    <!-- RIGHT COLUMN: Cards and Info Paragraph -->
                     <div class="col-md-9">
-                        <div class="row g-4">
+                        <!-- Cards -->
+                        <div id="washCards" class="row g-4 cards-wrapper">
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
                                         <h5 class="card-title">Water and Sanitation</h5>
                                         <p class="card-text">Brief about water and sanitation...</p>
-                                        <a href="water-sanitation.html" class="btn btn-sm btn-outline-primary">Read
-                                            More</a>
+                                        <a href="OurWorkSubSection/wash.html#water-and-sanitation"
+                                            class="btn btn-sm text-dark cards-wrapper">Read
+                                            More&rarr;</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
-                                        <h5 class="card-title">WaSH in Schools</h5>
-                                        <p class="card-text">Brief about WaSH in schools...</p>
-                                        <a href="wash-schools.html" class="btn btn-sm btn-outline-primary">Read More</a>
+                                        <h5 class="card-title">Himmotthan Initiative</h5>
+                                        <p class="card-text">Brief about Himmotthan Initiative...</p>
+                                        <a href="OurWorkSubSection/wash.html#himmotthan-initiative"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Current Scale</h5>
+                                        <p class="card-text">Brief about current scale...</p>
+                                        <a href="OurWorkSubSection/wash.html#current-scale"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">WaSH in School</h5>
+                                        <p class="card-text">Brief about WaSH in School...</p>
+                                        <a href="OurWorkSubSection/wash.html#wash-in-school"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">WaSH in Disaster Hit Villages</h5>
+                                        <p class="card-text">Brief about WaSH in Disaster Hit Villages...</p>
+                                        <a href="OurWorkSubSection/wash.html#wash-in-disaster-hit-villages"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">WaSH Integrated</h5>
+                                        <p class="card-text">Brief about WaSH Integrated...</p>
+                                        <a href="OurWorkSubSection/wash.html#wash-integrated"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Open Defecation Free Programme</h5>
+                                        <p class="card-text">Brief about Open Defecation Free Programme...</p>
+                                        <a href="OurWorkSubSection/wash.html#open-defecation-free-programme"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
                                     </div>
                                 </div>
                             </div>
@@ -235,16 +475,269 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Water Security</h5>
                                         <p class="card-text">Brief about water security...</p>
-                                        <a href="water-security.html" class="btn btn-sm btn-outline-primary">Read
-                                            More</a>
+                                        <a href="OurWorkSubSection/wash.html#water-security"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Paragraph (hidden initially) -->
+                        <div id="washInfo" class="info-text mt-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="collapse-arrow read-more-link " onclick="toggleInfo('wash') ">&larr;
+                                    Back</span>
+                                <a href="OurWorkSubSection/wash.JPG.html" class="read-more-link">Read more &rarr;</a>
+                            </div>
+                            <p class="mb-0 mt-2">
+                                WaSH plays a vital role in the hill farming system of Uttarakhand, supporting rural
+                                livelihoods and ensuring food security...
+                            </p>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Education Section -->
+        <section class="section-with-bg" style="background-image: url('assets/education.JPG');">
+            <div class="container">
+                <div class="row">
+                    <!-- LEFT COLUMN: Heading -->
+                    <div class="col-md-3 d-flex flex-column align-items-start justify-content-center">
+                        <a href="javascript:void(0)" class="text-decoration-none section-title-hover"
+                            onclick="toggleInfo('education')">
+                            <h2 class="fw-bold mb-0">
+                                Education <span class="arrow">&rsaquo;</span>
+                            </h2>
+                        </a>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Cards and Info Paragraph -->
+                    <div class="col-md-9">
+                        <!-- Cards -->
+                        <div id="educationCards" class="row g-4 cards-wrapper">
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Library</h5>
+                                        <p class="card-text">Brief about library...</p>
+                                        <a href="OurWorkSubSection/education.html#library"
+                                            class="btn btn-sm text-dark cards-wrapper">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Approach to Technology</h5>
+                                        <p class="card-text">Brief about Approach to Technology...</p>
+                                        <a href="OurWorkSubSection/education.html#approach-to-technology"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Language Programme</h5>
+                                        <p class="card-text">Brief about Language Programme...</p>
+                                        <a href="OurWorkSubSection/education.html#language-programme"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Appropriate Learning</h5>
+                                        <p class="card-text">Brief about Appropriate Learning...</p>
+                                        <a href="OurWorkSubSection/education.html#appropriate-learning"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Sports Development</h5>
+                                        <p class="card-text">Brief about Sports Development...</p>
+                                        <a href="OurWorkSubSection/education.html#sports-development"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Youth Clubs</h5>
+                                        <p class="card-text">Brief about Youth Clubs...</p>
+                                        <a href="OurWorkSubSection/education.html#youth-clubs"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Anganwadis</h5>
+                                        <p class="card-text">Brief about Anganwadis...</p>
+                                        <a href="OurWorkSubSection/education.html#anganwadis"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">EWaSH</h5>
+                                        <p class="card-text">Brief about EWaSH...</p>
+                                        <a href="OurWorkSubSection/education.html#ewash"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Case Studies</h5>
+                                        <p class="card-text">Brief about Case Studies...</p>
+                                        <a href="OurWorkSubSection/education.html#case-studies"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Education In Covid</h5>
+                                        <p class="card-text">Brief about Education In Covid...</p>
+                                        <a href="OurWorkSubSection/education.html#education-in-covid"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Paragraph (hidden initially) -->
+                        <div id="educationInfo" class="info-text mt-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="collapse-arrow read-more-link " onclick="toggleInfo('education') ">&larr;
+                                    Back</span>
+                                <a href="OurWorkSubSection/education.html" class="read-more-link">Read more &rarr;</a>
+                            </div>
+                            <p class="mb-0 mt-2">
+                                Education plays a vital role in the hill farming system of Uttarakhand, supporting rural
+                                livelihoods and ensuring food security...
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Communities Section -->
+        <section class="section-with-bg" style="background-image: url('assets/communities.JPG');">
+            <div class="container">
+                <div class="row">
+                    <!-- LEFT COLUMN: Heading -->
+                    <div class="col-md-3 d-flex flex-column align-items-start justify-content-center">
+                        <a href="javascript:void(0)" class="text-decoration-none section-title-hover"
+                            onclick="toggleInfo('communities')">
+                            <h2 class="fw-bold mb-0">
+                                Communities <span class="arrow">&rsaquo;</span>
+                            </h2>
+                        </a>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Cards and Info Paragraph -->
+                    <div class="col-md-9">
+                        <!-- Cards -->
+                        <div id="communitiesCards" class="row g-4 cards-wrapper">
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Community Based Organization</h5>
+                                        <p class="card-text">Brief about community based organization...</p>
+                                        <a href="OurWorkSubSection/communities.html#community-based-organization"
+                                            class="btn btn-sm text-dark cards-wrapper">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Partnership With Government</h5>
+                                        <p class="card-text">Brief about Partnership With Government...</p>
+                                        <a href="OurWorkSubSection/communities.html#partnership-with-government"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Livelihood Skills Uttarakhand</h5>
+                                        <p class="card-text">Brief about Livelihood Skills  Uttarakhand...</p>
+                                        <a href="OurWorkSubSection/communities.html#livelihood-skills-uttarakhand"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">JICA</h5>
+                                        <p class="card-text">Brief about JICA...</p>
+                                        <a href="OurWorkSubSection/communities.html#jica"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ILSP</h5>
+                                        <p class="card-text">Brief about ILSP...</p>
+                                        <a href="OurWorkSubSection/communities.html#ilsp"
+                                            class="btn btn-sm text-dark read-more-link">Read
+                                            More&rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Paragraph (hidden initially) -->
+                        <div id="communitiesInfo" class="info-text mt-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="collapse-arrow read-more-link " onclick="toggleInfo('communities') ">&larr;
+                                    Back</span>
+                                <a href="OurWorkSubSection/communities.html" class="read-more-link">Read more &rarr;</a>
+                            </div>
+                            <p class="mb-0 mt-2">
+                                Communities plays a vital role in the hill farming system of Uttarakhand, supporting rural
+                                livelihoods and ensuring food security...
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
 

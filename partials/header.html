@@ -1,7 +1,7 @@
 <nav id="mainNav" class="navbar navbar-expand-lg  fixed-top shadow-sm transition">
     <div class="container-fluid px-3">
-        <a class=" navbar-brand d-flex align-items-center me-4" href="home.html">
-            <img src="assets/logo.jpeg" alt="Logo" height="50" class="me-2 rounded shadow-sm logo-soft">    
+        <a class=" navbar-brand d-flex align-items-center me-4" href="../home.html">
+            <img src="../assets/logo.jpeg" alt="Logo" height="50" class="me-2 rounded shadow-sm logo-soft">
             <div class="d-flex flex-column lh-sm">
                 <strong>HIMMOTTHAN SOCIETY</strong>
                 <small class="text-dark">An Initiative of TATA TRUSTS</small>
@@ -17,7 +17,7 @@
 
                 <!-- Example Dropdown -->
                 <li class="nav-item dropdown fw-bold">
-                    <a class="nav-link dropdown-toggle" href="home.html" id="homeDropdown" role="button">Home</a>
+                    <a class="nav-link dropdown-toggle" href="../home.html" id="homeDropdown" role="button">Home</a>
                     <ul class="dropdown-menu" aria-labelledby="homeDropdown">
                         <li><a class="dropdown-item" href="home.html#about">About Us</a></li>
                         <li><a class="dropdown-item" href="home.html#ourvision">Our Vision</a></li>
@@ -31,17 +31,32 @@
 
 
                 <li class="nav-item dropdown position-static fw-bold">
-                    <a class="nav-link dropdown-toggle" href="our-work.html" id="ourWork" role="button">Our Work</a>
+                    <a class="nav-link dropdown-toggle" href="../our-work.html" id="ourWork" role="button">Our Work</a>
                     <div class="dropdown-menu w-100 mt-0 border-0 shadow mega-menu p-4" aria-labelledby="ourWork">
                         <div class="container">
                             <div class="row">
                                 <!-- Column 1 -->
                                 <div class="col">
-                                    <h6 class="text-uppercase">Livestock</h6>
+                                    <h6 class="text-uppercase">
+                                        <a href="../OurWorkSubSection/livestock.html" class="nav-plain-link">Livestock</a>
+                                    </h6>
+                                    <style>
+                                        .nav-plain-link {
+                                            color: inherit;
+                                            text-decoration: none;
+                                            transition: color 0.3s ease;
+                                        }
+
+                                        .nav-plain-link:hover {
+                                            color: #003366;
+                                            /* dark blue */
+                                            text-decoration: underline;
+                                        }
+                                    </style>
                                     <ul class="list-unstyled">
-                                        <li><a class="dropdown-item" href="#">Fodder Plantation</a></li>
-                                        <li><a class="dropdown-item" href="#">Breed Improvement</a></li>
-                                        <li><a class="dropdown-item" href="#">Support Structure</a></li>
+                                        <li><a class="dropdown-item" href="../OurWorkSubSection/livestock.html#fodder">Fodder Plantation</a></li>
+                                        <li><a class="dropdown-item" href="../OurWorkSubSection/livestock.html#breed">Breed Improvement</a></li>
+                                        <li><a class="dropdown-item" href="../OurWorkSubSection/livestock.html#support">Support Structure</a></li>
                                     </ul>
                                 </div>
                                 <!-- Column 2 -->
