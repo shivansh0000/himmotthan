@@ -48,6 +48,9 @@
   left: 0;
   right: 0;
   top: 100%;
+}
+
+.navbar .mega-menu {
   background: linear-gradient(to top, #d1f2eb, #b2ebf2);
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -58,11 +61,11 @@
 .navbar .mega-menu .row {
   gap: 0.5rem;
 }
-.navbar .mega-menu .col,
+
 .navbar .mega-menu .col-md-4 {
   margin-bottom: 1rem;
   padding: 0 1rem;
-  min-width: 180px;
+  min-width: 220px;
 }
 .navbar .mega-menu h6 {
   font-size: 1rem;
@@ -87,6 +90,25 @@
 }
 .navbar .mega-menu a.dropdown-item:hover {
   background-color: #f8f9fa;
+}
+
+.navbar .dropdown-menu{
+  transition: all 0.3s ease;
+}
+
+.nav-item.dropdown .dropdown-menu {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  margin-top: 0;
+}
+
+/* Show it when .show is applied (via JS) */
+.nav-item.dropdown:hover .dropdown-menu,
+.nav-item.dropdown .dropdown-menu.show {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* --- General Body/HTML --- */
